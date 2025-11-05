@@ -25,7 +25,7 @@ export const Navigation = () => {
             <img
               src={logo}
               alt="Logo"
-              className="w-20 h-20 xs:w-14 xs:h-14 sm:w-14 sm:h-14 lg:w-14 lg:h-14 transform transition-transform duration-200 ease-in-out hover:scale-110"
+              className="w-12 h-12 sm:w-16 sm:h-16c lg:w-14 lg:h-14 transform transition-transform duration-200 ease-in-out hover:scale-110"
             />
             <span className="text-xl font-bold text-foreground">DealHub</span>
           </Link>
