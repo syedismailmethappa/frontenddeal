@@ -1,4 +1,5 @@
-import myn from '../assets/myn.jpg'
+import myn from '../assets/myn.jpg';
+import flip from '../assets/flip.png';
 export interface Product {
   id: number;
   title: string;
@@ -12,12 +13,12 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    title: "Wireless Bluetooth Headphones with Noise Cancellation",
-    price: "₹2,999",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
+    title: "GLOBAL Sports shoes, Walking, Lightweight, Trekking, Stylish Running Shoes For Men  (White , 9)",
+    price: "₹927",
+    image: flip,
     store: "Flipkart",
-    affiliateLink: "https://Flipkart.in",
-    category: "Electronics",
+    affiliateLink: "https://fktr.in/D9EAR1W",
+    category: "shoes",
   },
   {
     id: 2,

@@ -37,7 +37,7 @@ export const ProductCard = ({ title, price, image, store, affiliateLink, categor
             {category}
           </Badge>
         </div>
-        <h3 className="font-semibold text-foreground line-clamp-2 mb-2 min-h-[3rem]">
+        <h3 className="font-semibold line-clamp-2 mb-2 min-h-[3rem] double-gradient">
           {title}
         </h3>
         <p className="text-2xl font-bold text-primary">{price}</p>

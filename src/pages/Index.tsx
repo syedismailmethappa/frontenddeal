@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { MethAIChatbot } from "@/components/MethAIChatbot";
 import { Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import heroBanner from "@/assets/hero-banner.jpg";
+import heroBanners from "@/assets/hero-banners.jpg";
 import { products } from "@/data/products";
 
 const Index = () => {
@@ -26,22 +26,22 @@ const Index = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-90"
           style={{ 
-            backgroundImage: `url(${heroBanner})`,
+            backgroundImage: `url(${heroBanners})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
         <div className="relative container mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in double-gradient">
               Discover Best Deals Across Top Stores
             </h1>
-            <p className="text-lg md:text-xl mb-8 opacity-95 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <p className="text-lg md:text-xl mb-8 opacity-95 animate-fade-in double-gradient-subtle" style={{ animationDelay: '0.1s' }}>
               Compare prices from Flipkart, Myntra, and Meesho - All in one place
             </p>
             <div className="flex gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <TrendingUp className="w-6 h-6 animate-pulse" />
-              <span className="text-sm font-medium">Trending Products Updated Daily</span>
+              <span className="text-sm font-medium">Trending Products Updated Daily. Only under ₹1000 Price Range Product Listed.</span>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ const Index = () => {
       <section className="container mx-auto px-4 py-12">
         <div className="mb-8 animate-fade-in">
           <h2 className="text-3xl font-bold text-foreground mb-2">
-            All Products
+            All Products ₹1000 Deals
           </h2>
           <p className="text-muted-foreground">
             Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
