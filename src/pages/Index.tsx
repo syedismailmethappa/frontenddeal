@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { StoreFilter } from "@/components/StoreFilter";
 import { ProductCard } from "@/components/ProductCard";
@@ -6,16 +6,68 @@ import { MethAIChatbot } from "@/components/MethAIChatbot";
 import { Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import heroBanners from "@/assets/hero-banners.jpg";
-import { products } from "@/data/products";
+import { apiClient, Product } from "@/lib/api";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
-  });
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiClient.getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError("Failed to load products. Please try again later.");
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const searchProducts = async () => {
+      if (searchQuery.trim()) {
+        try {
+          setLoading(true);
+          const data = await apiClient.searchProducts(searchQuery);
+          setProducts(data);
+        } catch (err) {
+          setError("Failed to search products.");
+          console.error("Error searching products:", err);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        // Reload all products when search is cleared
+        const fetchProducts = async () => {
+          try {
+            setLoading(true);
+            const data = await apiClient.getProducts();
+            setProducts(data);
+          } catch (err) {
+            setError("Failed to load products.");
+            console.error("Error fetching products:", err);
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchProducts();
+      }
+    };
+
+    const timeoutId = setTimeout(searchProducts, 300);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
+  const filteredProducts = products;
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,7 +129,16 @@ const Index = () => {
           </p>
         </div>
 
-        {filteredProducts.length === 0 ? (
+        {loading ? (
+          <div className="text-center py-20 animate-fade-in">
+            <p className="text-xl text-muted-foreground">Loading products...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-20 animate-fade-in">
+            <p className="text-xl text-destructive">{error}</p>
+            <p className="text-sm text-muted-foreground mt-2">Make sure the backend server is running on http://localhost:8000</p>
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <div className="text-center py-20 animate-fade-in">
             <p className="text-xl text-muted-foreground">No products found. Try adjusting your filters.</p>
           </div>

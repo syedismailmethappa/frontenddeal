@@ -1,20 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { ProductCard } from "@/components/ProductCard";
 import { Search, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { getProductsByStore } from "@/data/products";
+import { apiClient, Product } from "@/lib/api";
 
 const MeeshoProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const meeshoProducts = getProductsByStore("meesho");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredProducts = meeshoProducts.filter((product) => {
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiClient.getProductsByStore("meesho");
+        setProducts(data);
+      } catch (err) {
+        setError("Failed to load products. Please try again later.");
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = products.filter((product) => {
+    if (!searchQuery.trim()) return true;
+    return product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+           product.category.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
   return (
@@ -71,7 +91,15 @@ const MeeshoProducts = () => {
           </p>
         </div>
 
-        {filteredProducts.length === 0 ? (
+        {loading ? (
+          <div className="text-center py-20">
+            <p className="text-xl text-muted-foreground">Loading products...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-20">
+            <p className="text-xl text-destructive">{error}</p>
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-muted-foreground">No products found. Try adjusting your search.</p>
           </div>
