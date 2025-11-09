@@ -1,33 +1,69 @@
-# Welcome to your Lovable project
+# ShopSpot Showcase Frontend
 
-## Project info
+A React + Vite application for comparing and finding the best deals across various e-commerce platforms.
 
-**URL**: https://lovable.dev/projects/bdf05046-a474-4ca8-bdca-3a101aed349a
+## Quick Start for Development
 
-## How can I edit this code?
+```powershell
+# Install dependencies
+npm install
 
-There are several ways of editing your application.
+# Start development server
+npm run dev
+```
 
-**Use Lovable**
+Visit `http://localhost:5173` in your browser.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bdf05046-a474-4ca8-bdca-3a101aed349a) and start prompting.
+## Deployment to Render
 
-Changes made via Lovable will be committed automatically to this repo.
+### Environment Variables
 
-**Use your preferred IDE**
+Create these in your Render dashboard:
+```env
+VITE_API_BASE_URL=https://fullstack-dealshop00.onrender.com/
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_PROJECT_ID=your-project-id
+VITE_SUPABASE_PUBLISHABLE_KEY=your-anon-key
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Build and Start Commands
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Build Command:
+```bash
+npm install && npm run build
+```
 
-Follow these steps:
+Start Command:
+```bash
+npm run preview
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Important Settings
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+In your Render dashboard:
+1. Set Build Command: `npm install && npm run build`
+2. Set Start Command: `npm run preview`
+3. Add all environment variables
+4. Set Auto-Deploy: Yes
+
+## Development Commands
+
+```powershell
+# Install dependencies
+npm install
+
+# Start dev server (with hot reload)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+```
 
 # Step 3: Install the necessary dependencies.
 npm i

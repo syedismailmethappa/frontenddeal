@@ -4,11 +4,12 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
+  base: "./", // Add this for proper asset paths
   server: {
-    // keep dev server config if you need it; bind to all interfaces
     host: "0.0.0.0",
-    port: Number(process.env.PORT) || 8080,
+    port: Number(process.env.PORT) || 5173,
   },
+
 
   // <-- add this preview block so `vite preview` uses Render's PORT
   preview: {
@@ -26,4 +27,7 @@ export default defineConfig(({ mode }) => ({
 
   // ...rest of your config
 }));
+
+// vite.config.ts
+
 
