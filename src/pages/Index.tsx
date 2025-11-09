@@ -136,7 +136,7 @@ const Index = () => {
         ) : error ? (
           <div className="text-center py-20 animate-fade-in">
             <p className="text-xl text-destructive">{error}</p>
-            <p className="text-sm text-muted-foreground mt-2">Make sure the backend server is running on http://localhost:8000</p>
+            <p className="text-sm text-muted-foreground mt-2">Make sure the backend server is running on https://fullstack-dealshop00.onrender.com/</p>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-20 animate-fade-in">
