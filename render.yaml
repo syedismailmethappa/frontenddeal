@@ -7,4 +7,6 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20.x
+      - key: VITE_API_BASE_URL
+        value: https://fullstack-dealshop2.onrender.com
 

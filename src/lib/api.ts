@@ -1,4 +1,12 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://fullstack-dealshop2.onrender.com/';
+// Remove trailing slash from base URL to avoid double slashes
+const getApiBaseUrl = () => {
+  const url = import.meta.env.VITE_API_BASE_URL || 'https://fullstack-dealshop2.onrender.com';
+  const baseUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+  console.log('API Base URL:', baseUrl);
+  return baseUrl;
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export interface Product {
   id: number;
