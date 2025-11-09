@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dealshop
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+
