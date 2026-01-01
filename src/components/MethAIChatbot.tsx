@@ -164,9 +164,7 @@ export const MethAIChatbot = () => {
 
   return (
     <>
-      <script
-  src='https://cdn.jotfor.ms/agent/embedjs/019b2dc15b9d7a9ba78256cb56fc04345570/embed.js?isVoice=1'>
-</script>
+   
       <Button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:scale-110 transition-transform z-50"
